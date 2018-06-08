@@ -1,0 +1,10 @@
+.container
+  .row.justify-content-center.align-items-center{ style: 'min-height: 100vh;' }
+    .col-6
+      %h1.text-center.mb-5 Time Sheet Generator
+
+      = simple_form_for :time_sheet, url: time_sheets_path do |f|
+        = f.input :first_name, label: 'First name'
+        = f.input :last_name, label: 'Last name'
+        = f.input :month, label: 'Month', collection: @months
+        = f.submit 'Generate excel file', class: 'btn btn-primary'
