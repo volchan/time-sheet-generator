@@ -23,6 +23,7 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 gem 'axlsx_styler'
 gem 'simple_form'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'binding_of_caller'
