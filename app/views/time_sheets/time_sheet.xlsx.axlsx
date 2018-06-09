@@ -1,0 +1,9 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet do |sheet|
+  sheet.add_row ['', 'arrivée', 'midi', 'midi', 'soir', 'total', 'contrat', 'pause matin', 'pause am', 'temps total']
+  @dates.each_with_index do |date, index|
+    sheet.add_row [date]
+    sheet.add_style "A#{index + 1}", sz: 15, bg_color: 'FFFFFF', alignment: { horizontal: :center }
+  end
+end
