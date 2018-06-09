@@ -6,6 +6,8 @@ class PagesController < ApplicationController
   private
 
   def build_month_array
-    @months = Date::MONTHNAMES.compact
+    @months = Date::MONTHNAMES.compact.each_with_index.map do |month, index|
+      [index + 1, month]
+    end
   end
 end

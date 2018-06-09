@@ -3,8 +3,9 @@
     .col-6
       %h1.text-center.mb-5 Time Sheet Generator
 
-      = simple_form_for :time_sheet, url: time_sheets_path do |f|
+      = simple_form_for :time_sheet, url: time_sheets_path, remote: true do |f|
         = f.input :first_name, label: 'First name'
         = f.input :last_name, label: 'Last name'
-        = f.input :month, label: 'Month', collection: @months
-        = f.submit 'Generate excel file', class: 'btn btn-primary'
+        = f.input :month, label: 'Month', collection: @months, prompt: 'Choose a month', label_method: :last, value_method: :first
+        = f.input :year, label: 'Year', input_html: { value: Time.zone.now.year }
+        = f.submit 'Generate excel file', class: 'btn btn-primary', data: { disable_with: 'Generating...' }

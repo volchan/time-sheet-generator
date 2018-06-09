@@ -1,5 +1,5 @@
 class TimeSheetsController < ApplicationController
   def create
-    raise
+    binding.pry
   end
 end
