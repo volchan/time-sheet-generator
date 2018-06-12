@@ -6,12 +6,10 @@ class TimeSheetsController < ApplicationController
   def create
     @time_sheet = TimeSheet.new(sheet_params)
     return render :home unless @time_sheet.valid?
-    @dates = build_dates_array
-    @dates.pop
-    @grouped_dates = @dates.group_by { |date| date.strftime("%W") }
     @date = Date.parse("1/#{@time_sheet.month}/#{@time_sheet.year}")
+    @dates = build_dates_array
     render(
-      xlsx: "#{@time_sheet.complete_name}_#{l Date.today, format: :month}_#{@time_sheet.year}",
+      xlsx: "#{@time_sheet.complete_name}_#{l @date, format: :month}_#{@time_sheet.year}",
       template: 'time_sheets/time_sheet.xlsx.axlsx',
       layout: false
     )
@@ -41,15 +39,7 @@ class TimeSheetsController < ApplicationController
   end
 
   def build_dates_array
-    (
-      Date.parse(
-        "1/#{@time_sheet.month}/#{@time_sheet.year}"
-      )..(
-        Date.parse(
-          "1/#{@time_sheet.month + 1}/#{@time_sheet.year}"
-        )
-      )
-    ).to_a
+    (@date..@date.at_end_of_month).to_a
   end
 
   def sheet_params

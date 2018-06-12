@@ -6,9 +6,9 @@ wb.add_worksheet do |sheet|
   sheet.add_row
   sheet.add_row
   sheet.add_row ['', 'arrivée', 'midi', 'midi', 'soir', 'total', 'contrat', 'pause matin', 'pause am', 'temps total']
-  @grouped_dates.each do |week, dates|
-    proccessed_dates = build_row_array(dates)
-    proccessed_dates.each { |array| sheet.add_row array }
-    sheet.add_row ["Total H Supp semain #{week}"]
+  @dates.each_with_index do |date, index|
+    sheet.add_row ["Total H Supp semain #{@dates[index - 1].cweek}"] if date.monday?
+    row_array = build_row_array(date, sheet)
+    sheet.add_row row_array
   end
 end
