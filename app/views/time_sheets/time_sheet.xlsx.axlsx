@@ -9,6 +9,6 @@ wb.add_worksheet do |sheet|
   @dates.each_with_index do |date, index|
     sheet.add_row ["Total H Supp semain #{@dates[index - 1].cweek}"] if date.monday?
     row_array = build_row_array(date, sheet)
-    sheet.add_row row_array
+    sheet.add_row(row_array.first, types: row_array.last)
   end
 end
