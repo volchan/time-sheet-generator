@@ -40,7 +40,7 @@ module ApplicationHelper
         '00:00:00',
         '00:00:00',
         '00:00:00',
-        "=IF(A#{index}<>\"\",E#{index}-B#{index}-D#{index}+C#{index},\"\")"
+        "=TEXT((E#{index}-B#{index}-D#{index}+C#{index}),\"HH:MM:SS\")"
       ], %I[
         date
         time
