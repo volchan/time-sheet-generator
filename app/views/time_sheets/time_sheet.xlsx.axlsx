@@ -7,8 +7,9 @@ wb.add_worksheet do |sheet|
   sheet.add_row
   sheet.add_row ['', 'arrivée', 'midi', 'midi', 'soir', 'total', 'contrat', 'pause matin', 'pause am', 'temps total']
   @dates.each_with_index do |date, index|
-    sheet.add_row ["Total H Supp semain #{@dates[index - 1].cweek}"] if date.monday?
+    sheet.add_row overtime_row(@dates, index, sheet) if date.monday?
     row_array = build_row_array(date, sheet)
     sheet.add_row(row_array.first, formats: row_array.last)
   end
+  sheet.add_row overtime_row(@dates, @dates.length - 1, sheet)
 end
