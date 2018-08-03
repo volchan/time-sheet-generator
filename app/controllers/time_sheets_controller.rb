@@ -8,6 +8,8 @@ class TimeSheetsController < ApplicationController
     return render :home unless @time_sheet.valid?
     @date = Date.parse("1/#{@time_sheet.month}/#{@time_sheet.year}")
     @dates = build_dates_array
+    @overtime_cells = []
+    @majored_overtime_cells = []
     render(
       xlsx: "#{@time_sheet.complete_name}_#{l @date, format: :month}_#{@time_sheet.year}",
       template: 'time_sheets/time_sheet.xlsx.axlsx',

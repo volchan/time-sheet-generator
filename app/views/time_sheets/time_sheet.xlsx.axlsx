@@ -2,13 +2,20 @@ wb = xlsx_package.workbook
 
 wb.add_worksheet do |sheet|
   sheet.add_row ["Horraires #{l(@date, format: :month).capitalize} #{@time_sheet.year} #{@time_sheet.complete_name}"]
-  sheet.add_row
-  sheet.add_row
-  sheet.add_row
+  sheet.merge_cells('A1:K1')
+  sheet.add_style('A1', alignment: { horizontal: :center, vertical: :center }, b: true, sz: 24)
+  3.times { sheet.add_row }
   sheet.add_row ['', 'arrivée', 'midi', 'midi', 'soir', 'total', 'contrat', 'pause matin', 'pause am', 'temps total']
+  sheet.add_style('B5:J5', alignment: { horizontal: :center, vertical: :center }, b: true, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
   @dates.each_with_index do |date, index|
     overtime_row(@dates, index, sheet) if date.monday?
     build_row_array(date, sheet)
   end
   overtime_row(@dates, @dates.length - 1, sheet)
+  3.times { sheet.add_row }
+  last_month_overtime_row(sheet)
+  this_month_overtime_row(sheet)
+  this_month_majored_overtime_row(sheet)
+  computed_overtime_row(sheet)
+  sheet.column_widths(21, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12)
 end
