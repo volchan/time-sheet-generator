@@ -31,7 +31,7 @@ module ApplicationHelper
       '00:00',
       '00:00',
       "=IF(A#{index}<>\"\",E#{index}-B#{index}-D#{index}+C#{index},\"\")",
-      '07:00',
+      '07:30',
       '00:00',
       '00:00',
       "=F#{index}-(H#{index}+I#{index})"
