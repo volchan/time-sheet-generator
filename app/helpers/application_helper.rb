@@ -77,9 +77,9 @@ module ApplicationHelper
     index = get_index(sheet)
     cells = [
       '',
-      '',
-      '',
       'Heures supplémentaires restantes du mois précédent',
+      '',
+      '',
       '',
       '',
       '',
@@ -88,8 +88,8 @@ module ApplicationHelper
       '0'
     ]
     sheet.add_row(cells)
-    sheet.merge_cells("D#{index}:I#{index}")
-    sheet.add_style("D#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
+    sheet.merge_cells("B#{index}:I#{index}")
+    sheet.add_style("B#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
     sheet.add_style("J#{index}", sz: 16, b: true, alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.rows.last.height = 25
     @last_month_overtime_cell = "J#{index}"
@@ -99,9 +99,9 @@ module ApplicationHelper
     index = get_index(sheet)
     cells = [
       '',
-      '',
-      '',
       'Heures supplémentaires',
+      '',
+      '',
       '',
       '',
       '',
@@ -110,8 +110,8 @@ module ApplicationHelper
       "=SUM(#{@overtime_cells.join(',')})"
     ]
     sheet.add_row(cells)
-    sheet.merge_cells("D#{index}:I#{index}")
-    sheet.add_style("D#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
+    sheet.merge_cells("B#{index}:I#{index}")
+    sheet.add_style("B#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
     sheet.add_style("J#{index}", sz: 16, b: true, bg_color: '33adea', alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.rows.last.height = 25
   end
@@ -120,9 +120,9 @@ module ApplicationHelper
     index = get_index(sheet)
     cells = [
       '',
-      '',
-      '',
       'Heures supplémentaires majorées ( 25% jusqu\'à 8h, 50% au dela de 8h)',
+      '',
+      '',
       '',
       '',
       '',
@@ -131,8 +131,8 @@ module ApplicationHelper
       "=SUM(#{@majored_overtime_cells.join(',')})"
     ]
     sheet.add_row(cells)
-    sheet.merge_cells("D#{index}:I#{index}")
-    sheet.add_style("D#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
+    sheet.merge_cells("B#{index}:I#{index}")
+    sheet.add_style("B#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
     sheet.add_style("J#{index}", sz: 16, b: true, bg_color: 'f98639', alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.rows.last.height = 25
   end
@@ -141,9 +141,9 @@ module ApplicationHelper
     index = get_index(sheet)
     cells = [
       '',
-      '',
-      '',
       'Total heures supplémentaires majorées',
+      '',
+      '',
       '',
       '',
       '',
@@ -152,8 +152,8 @@ module ApplicationHelper
       "=SUM(J#{index - 1},J#{index - 3})"
     ]
     sheet.add_row(cells)
-    sheet.merge_cells("D#{index}:I#{index}")
-    sheet.add_style("D#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
+    sheet.merge_cells("B#{index}:I#{index}")
+    sheet.add_style("B#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
     sheet.add_style("J#{index}", sz: 16, b: true, bg_color: '47e59b', alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.rows.last.height = 25
   end
