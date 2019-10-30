@@ -45,7 +45,7 @@ module ApplicationHelper
     sheet.rows.last.height = 18
   end
 
-  def overtime_row(dates, date_index, sheet)
+  def overtime_row(dates, date_index, sheet, overtime_cells, majored_overtime_cells)
     days = count_days(dates, date_index - 1)
     cell_array = build_cell_array(days, sheet)
     weekdays = count_weekdays(dates, date_index - 1)
@@ -69,11 +69,11 @@ module ApplicationHelper
     sheet.add_style("J#{index}", b: true, sz: 16, bg_color: '33adea', alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.add_style("K#{index}", b: true, sz: 16, bg_color: 'f98639', alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.rows.last.height = 25
-    @overtime_cells << "J#{index}"
-    @majored_overtime_cells << "K#{index}"
+    overtime_cells << "J#{index}"
+    majored_overtime_cells << "K#{index}"
   end
 
-  def last_month_overtime_row(sheet)
+  def last_month_overtime_row(sheet, last_month_overtime_cell)
     index = get_index(sheet)
     cells = [
       '',
@@ -92,10 +92,10 @@ module ApplicationHelper
     sheet.add_style("B#{index}", sz: 16, b: true, alignment: { horizontal: :right, vertical: :center })
     sheet.add_style("J#{index}", sz: 16, b: true, alignment: { horizontal: :center, vertical: :center }, border: { color: '000000', name: %I[vertical horizontal], style: :thin })
     sheet.rows.last.height = 25
-    @last_month_overtime_cell = "J#{index}"
+    last_month_overtime_cell = "J#{index}"
   end
 
-  def this_month_overtime_row(sheet)
+  def this_month_overtime_row(sheet, overtime_cells)
     index = get_index(sheet)
     cells = [
       '',
@@ -107,7 +107,7 @@ module ApplicationHelper
       '',
       '',
       '',
-      "=SUM(#{@overtime_cells.join(',')})"
+      "=SUM(#{overtime_cells.join(',')})"
     ]
     sheet.add_row(cells)
     sheet.merge_cells("B#{index}:I#{index}")
@@ -116,7 +116,7 @@ module ApplicationHelper
     sheet.rows.last.height = 25
   end
 
-  def this_month_majored_overtime_row(sheet)
+  def this_month_majored_overtime_row(sheet, majored_overtime_cells)
     index = get_index(sheet)
     cells = [
       '',
@@ -128,7 +128,7 @@ module ApplicationHelper
       '',
       '',
       '',
-      "=SUM(#{@majored_overtime_cells.join(',')})"
+      "=SUM(#{majored_overtime_cells.join(',')})"
     ]
     sheet.add_row(cells)
     sheet.merge_cells("B#{index}:I#{index}")
