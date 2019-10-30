@@ -3,9 +3,5 @@
     .col-6
       %h1.text-center.mb-5 Générateur de fiche horraire
 
-      = simple_form_for @time_sheet do |f|
-        = f.input :first_name, label: 'Prénom'
-        = f.input :last_name, label: 'Nom'
-        = f.input :month, label: 'Mois', collection: @months, prompt: 'Choisir un mois', label_method: :last, value_method: :first
-        = f.input :year, label: 'Année', input_html: { value: Time.zone.now.year }
-        = f.submit 'Générer le fichier excel', class: 'btn btn-primary'
+      #formContainer
+        = render 'time_sheets/form', time_sheet: @time_sheet

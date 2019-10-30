@@ -9,7 +9,7 @@ module Utils
         FileUtils.mkdir_p(Rails.root.join("tmp/#{folder_name}"))
         File.open(Rails.root.join("tmp/#{folder_name}/#{file_name}"), 'w+b') { |f| f.write binary }
         url_helper = Rails.application.routes.url_helpers
-        url_helper.download_documents_url(folder_name)
+        url_helper.download_time_sheets_url(folder_name)
       end
 
       private
